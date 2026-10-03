@@ -1,98 +1,303 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import React from "react";
+import { Text, TouchableOpacity, View } from "react-native";
+import Feather from "react-native-vector-icons/Feather";
 
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
-
-export default function HomeScreen() {
+const Home = () => {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+    <View style={{ flex: 1, backgroundColor: "#F8FAFC" }}>
+      {/* ================= Header ================= */}
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+          paddingHorizontal: 20,
+          paddingVertical: 16,
+          backgroundColor: "#FFFFFF",
+          borderBottomWidth: 1,
+          borderBottomColor: "#E5E7EB",
+        }}
+      >
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <View
+            style={{
+              width: 45,
+              height: 45,
+              borderRadius: 12,
+              backgroundColor: "#E6F7F7",
+              justifyContent: "center",
+              alignItems: "center",
+              marginRight: 12,
+            }}
+          >
+            <Feather name="package" size={22} color="#077A7D" />
+          </View>
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+          <View>
+            <Text
+              style={{
+                fontSize: 18,
+                fontWeight: "700",
+                color: "#111827",
+              }}
+            >
+              Inventory
+            </Text>
+
+            <Text
+              style={{
+                fontSize: 13,
+                color: "#6B7280",
+                marginTop: 2,
+              }}
+            >
+              Management System
+            </Text>
+          </View>
+        </View>
+
+        <TouchableOpacity
+          style={{
+            width: 45,
+            height: 45,
+            borderRadius: 12,
+            backgroundColor: "#FEE2E2",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Feather name="log-out" size={22} color="#DC2626" />
+        </TouchableOpacity>
+      </View>
+
+      {/* ================= Title ================= */}
+      <View
+        style={{
+          paddingHorizontal: 20,
+          paddingVertical: 20,
+        }}
+      >
+        <Text
+          style={{
+            fontSize: 28,
+            fontWeight: "700",
+            color: "#111827",
+          }}
+        >
+          Dashboard
+        </Text>
+
+        <Text
+          style={{
+            marginTop: 4,
+            fontSize: 15,
+            color: "#6B7280",
+          }}
+        >
+          Ringkasan Inventory Hari Ini
+        </Text>
+      </View>
+
+      {/* ================= Cards ================= */}
+      <View
+        style={{
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "space-between",
+          paddingHorizontal: 20,
+          rowGap: 16,
+        }}
+      >
+        {/* Total Barang */}
+        <View
+          style={{
+            width: "47%",
+            backgroundColor: "#FFFFFF",
+            borderRadius: 16,
+            padding: 18,
+            elevation: 4,
+            shadowColor: "#000",
+            shadowOpacity: 0.08,
+            shadowRadius: 8,
+            shadowOffset: {
+              width: 0,
+              height: 3,
+            },
+          }}
+        >
+          <Feather name="box" size={28} color="#2563EB" />
+
+          <Text
+            style={{
+              marginTop: 14,
+              fontSize: 14,
+              color: "#6B7280",
+            }}
+          >
+            Total Barang
+          </Text>
+
+          <Text
+            style={{
+              marginTop: 5,
+              fontSize: 30,
+              fontWeight: "700",
+              color: "#111827",
+            }}
+          >
+            120
+          </Text>
+        </View>
+
+        {/* Total Kategori */}
+        <View
+          style={{
+            width: "47%",
+            backgroundColor: "#FFFFFF",
+            borderRadius: 16,
+            padding: 18,
+            elevation: 4,
+            shadowColor: "#000",
+            shadowOpacity: 0.08,
+            shadowRadius: 8,
+            shadowOffset: {
+              width: 0,
+              height: 3,
+            },
+          }}
+        >
+          <Feather name="layers" size={28} color="#16A34A" />
+
+          <Text
+            style={{
+              marginTop: 14,
+              fontSize: 14,
+              color: "#6B7280",
+            }}
+          >
+            Total Kategori
+          </Text>
+
+          <Text
+            style={{
+              marginTop: 5,
+              fontSize: 30,
+              fontWeight: "700",
+              color: "#111827",
+            }}
+          >
+            15
+          </Text>
+        </View>
+
+        {/* Total Stok */}
+        <View
+          style={{
+            width: "47%",
+            backgroundColor: "#FFFFFF",
+            borderRadius: 16,
+            padding: 18,
+            elevation: 4,
+            shadowColor: "#000",
+            shadowOpacity: 0.08,
+            shadowRadius: 8,
+            shadowOffset: {
+              width: 0,
+              height: 3,
+            },
+          }}
+        >
+          <Feather name="archive" size={28} color="#EA580C" />
+
+          <Text
+            style={{
+              marginTop: 14,
+              fontSize: 14,
+              color: "#6B7280",
+            }}
+          >
+            Total Stok
+          </Text>
+
+          <Text
+            style={{
+              marginTop: 5,
+              fontSize: 30,
+              fontWeight: "700",
+              color: "#111827",
+            }}
+          >
+            2.350
+          </Text>
+        </View>
+
+        {/* Stok Menipis */}
+        <View
+          style={{
+            width: "47%",
+            backgroundColor: "#FFFFFF",
+            borderRadius: 16,
+            padding: 18,
+            elevation: 4,
+            shadowColor: "#000",
+            shadowOpacity: 0.08,
+            shadowRadius: 8,
+            shadowOffset: {
+              width: 0,
+              height: 3,
+            },
+          }}
+        >
+          <Feather name="alert-triangle" size={28} color="#DC2626" />
+
+          <Text
+            style={{
+              marginTop: 14,
+              fontSize: 14,
+              color: "#6B7280",
+            }}
+          >
+            Stok Menipis
+          </Text>
+
+          <Text
+            style={{
+              marginTop: 5,
+              fontSize: 30,
+              fontWeight: "700",
+              color: "#111827",
+            }}
+          >
+            3
+          </Text>
+        </View>
+      </View>
+
+      <View style={{ padding: 20 }}>
+        <View
+          style={{
+            padding: 20,
+            borderWidth: 1,
+            borderColor: "#E2E3E8",
+            borderRadius: 10,
+          }}
+        >
+          <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+            Selamat Datang
+          </Text>
+          <Text style={{ color: "#6D6F74" }}>
+            System manajemen inventory siap membantu anda mengelola stok barang
+            dengan lebih efisien
+          </Text>
+        </View>
+      </View>
+    </View>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});
+export default Home;
